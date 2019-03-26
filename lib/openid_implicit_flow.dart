@@ -19,26 +19,25 @@ class AuthenticatorImplicitFlow {
   }
 
   Future<Credential> authorize() async {
-    
+    Map<String,String> resp = Map<String,String>();
+
     flutterWebviewPlugin.onUrlChanged.listen((String url) async {
       
       if (url.contains(flow.redirectUri.toString()+"#")) {
         flutterWebviewPlugin.close();
         Uri uri = Uri.parse(url);
-        Map<String,String> resp = Map<String,String>();
 
         List<String> l = uri.fragment.split("&");
         for (var item in l) {
           resp[item.split("=")[0]] = item.split("=")[1];
         }
         
-        return flow.callback(resp);
       }
 
     });
 
     flutterWebviewPlugin.launch(flow.authenticationUri.toString(), hidden: false);
-    return null;
+    return flow.callback(resp);
   }
   
 }

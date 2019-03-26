@@ -1,4 +1,4 @@
-# openid_client
+# Openid Client Implicit Flow
 
 [![Build Status](https://travis-ci.org/appsup-dart/openid_client.svg?branch=master)](https://travis-ci.org/appsup-dart/openid_client)
 
