@@ -1,4 +1,4 @@
-import 'package:openid_client/openid_client_io.dart';
+import 'package:openid_client_implicit_flow/openid_client_io.dart';
 import 'package:args/command_runner.dart';
 import 'dart:convert';
 import 'dart:io';

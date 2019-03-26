@@ -243,10 +243,9 @@ class Flow {
   Flow._(this.type, this.responseType, this.client, {String state})
       : state = state ?? _randomString(20) {
     var scopes = client.issuer.metadata.scopesSupported;
-    for (var s in const ["openid", "profile", "email"]) {
+    for (var s in const ["openid", "profile", "email", "roles"]) {
       if (scopes.contains(s)) {
         this.scopes.add(s);
-        break;
       }
     }
 
@@ -270,7 +269,7 @@ class Flow {
   Flow.implicit(Client client, {String state})
       : this._(
             FlowType.implicit,
-            ["token id_token", "id_token", "token"].firstWhere((v) =>
+            ["id_token token"].firstWhere((v) =>
                 client.issuer.metadata.responseTypesSupported.contains(v)),
             client,
             state: state);
